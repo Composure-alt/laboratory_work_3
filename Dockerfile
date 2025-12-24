@@ -7,8 +7,9 @@ WORKDIR /app
 # Копируем все файлы из текущей директории в контейнер
 COPY . /app
 
-# Устанавливаем зависимости из requirements.txt
-RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+# Обновляем pip и устанавливаем зависимости из requirements.txt
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Указываем команду для запуска приложения
 CMD ["python", "app.py"]
